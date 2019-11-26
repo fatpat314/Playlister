@@ -27,7 +27,7 @@ def playlists_index():
 @app.route('/playlists/new')
 def playlists_new():
     """Create a new playlist."""
-    return render_template('playlists_new.html')
+    return render_template('playlists_new.html', playlist = {}, title = "New Playlist")
 
 def video_url_creator(id_lst):
     videos = []
@@ -52,7 +52,7 @@ def playlists_submit():
         'video_ids': video_ids
     }
     playlists.insert_one(playlist)
-    return redirect(url_for('playlists_show'))
+    return redirect(url_for('playlists_index'))
 
 @app.route('/playlists/<playlist_id>')
 def playlists_show(playlist_id):
