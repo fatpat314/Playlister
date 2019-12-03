@@ -79,13 +79,13 @@ class PlaylistsTests(TestCase):
     #     self.assertEqual(result.status, '302 FOUND')
     #     mock_insert.assert_called_with(sample_playlist)
 
-    ''' V This test is not working V '''
-    # @mock.patch('pymongo.collection.Collection.update_one')
-    # def test_update_playlist(self, mock_update):
-    #         result = self.client.post(f'/playlists/{sample_playlist_id}', data=sample_form_data)
-    #
-    #         self.assertEqual(result.status, '302 FOUND')
-    #         mock_update.assert_called_with({'_id': sample_playlist_id}, {'$set': sample_playlist})
+
+    @mock.patch('pymongo.collection.Collection.update_one')
+    def test_update_playlist(self, mock_update):
+            result = self.client.post(f'/playlists/{sample_playlist_id}', data=sample_form_data)
+
+            self.assertEqual(result.status, '302 FOUND')
+            mock_update.assert_called_with({'_id': sample_playlist_id}, {'$set': sample_playlist})
 
 
     @mock.patch('pymongo.collection.Collection.delete_one')
