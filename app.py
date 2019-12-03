@@ -42,7 +42,7 @@ def video_url_creator(id_lst):
 def playlists_submit():
     """Submit a new playlist."""
     # Grab the video IDs and make a list out of them
-    video_ids = request.form.get('videos').split()
+    video_ids = request.form.get('video_ids').split()
     # call our helper function to create the list of links
     videos = video_url_creator(video_ids)
     playlist = {
