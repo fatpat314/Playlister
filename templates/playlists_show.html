@@ -23,6 +23,12 @@
 
             <hr>
     {% include 'partials/comment_form.html' %}
-        </div>
+    <hr>
+
+
+    {% for comment in comments %}
+        {% include 'partials/comment.html' %}
+    {% endfor %}
     </div>
+</div>
 {% endblock %}
