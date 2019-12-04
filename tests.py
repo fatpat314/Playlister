@@ -18,7 +18,8 @@ sample_playlist = {
 sample_form_data = {
     'title': sample_playlist['title'],
     'description': sample_playlist['description'],
-    'videos': '\n'.join(sample_playlist['video_ids'])
+    'videos': '\n'.join(sample_playlist['video_ids']),
+    'video_ids': "hY7m5jjJ9mM\nCQ85sUNBK7w"
 }
 
 class PlaylistsTests(TestCase):
@@ -71,13 +72,13 @@ class PlaylistsTests(TestCase):
 
 
     ''' V This test is not working V '''
-    # @mock.patch('pymongo.collection.Collection.insert_one')
-    # def test_submit_playlist(self, mock_insert):
-    #     '''Test submitting a new playlist'''
-    #     result = self.client.post('/playlist', data=sample_form_data)
-    #
-    #     self.assertEqual(result.status, '302 FOUND')
-    #     mock_insert.assert_called_with(sample_playlist)
+    @mock.patch('pymongo.collection.Collection.insert_one')
+    def test_submit_playlist(self, mock_insert):
+        '''Test submitting a new playlist'''
+        result = self.client.post('/playlists', data=sample_form_data)
+
+        self.assertEqual(result.status, '302 FOUND')
+        mock_insert.assert_called_with(sample_playlist)
 
 
     @mock.patch('pymongo.collection.Collection.update_one')
