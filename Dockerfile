@@ -2,14 +2,15 @@
 FROM python:3.7-slim-buster
 
 
+#Install required dependencies
+RUN pip install Flask
+
 #Copy source code to the container
 ADD . /app
 
 # Set working directory to /app so we can execute commands in it
 WORKDIR /app
 
-#Install required dependencies
-RUN pip install Flask
 RUN pip install -r requirements.txt
 
 # Declare environment variables
